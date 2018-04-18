@@ -1,4 +1,3 @@
-
 import unittest
 import numpy as np
 from homework3 import create_dataframe
@@ -12,7 +11,7 @@ class Homework3Test(unittest.TestCase):
         """
         ###!!!Change filepath to appropriate _correct_ filepath containing class.db
         """
-        self.filepath = './class.db'
+        self.filepath = '/users/rahulbirmiwal/Documents/UWMSDS/DATA515/class.db'
         self.fixture = create_dataframe(self.filepath)
 
     def test_columns(self):
@@ -21,6 +20,7 @@ class Homework3Test(unittest.TestCase):
         self.assertIn('video_id', cols)
         self.assertIn('category_id', cols)
         self.assertIn('language', cols)
+        self.assertEqual(len(cols),3)
 
     def test_length(self):
         df = self.fixture
@@ -50,7 +50,7 @@ class Homework3Test(unittest.TestCase):
         self.assertFalse( not np.array(df.groupby([cols[0], cols[1]]).agg(['nunique']) >1).any())
         self.assertFalse( not np.array(df.groupby([cols[1], cols[0]]).agg(['nunique']) >1).any())
 
-    #unittest teardown 
+    #unittest teardown
     def tearDown(self):
         del self.fixture
 
